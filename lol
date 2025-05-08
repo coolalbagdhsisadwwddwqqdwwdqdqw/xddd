@@ -79,6 +79,17 @@ langButton.TextColor3 = Color3.new(1, 1, 1)
 langButton.TextSize = 14
 langButton.Text = "Language: " .. globalLangList[currentLangIndex].name
 Instance.new("UICorner", langButton).CornerRadius = UDim.new(0, 6)
+-- 🧾 Create a Label to Display Translated Text
+local resultLabel = Instance.new("TextLabel", gui)
+resultLabel.Size = UDim2.new(0, 400, 0, 40)
+resultLabel.Position = UDim2.new(0.5, -200, 0.75, 0)
+resultLabel.Text = "Translation: "
+resultLabel.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
+resultLabel.TextColor3 = Color3.new(1, 1, 1)
+resultLabel.TextSize = 18
+resultLabel.Font = Enum.Font.SourceSansBold
+Instance.new("UICorner", resultLabel).CornerRadius = UDim.new(0, 6)
+
 -- 🧾 Create Language Dropdown (Searchable)
 local dropdownFrame = Instance.new("Frame", gui)
 dropdownFrame.Size = UDim2.new(0, 250, 0, 200)
@@ -165,7 +176,6 @@ textBox.FocusLost:Connect(function()
     if inputText ~= "" then
         -- Show the translation result
         local translatedText = translateText(inputText)
-        -- You can add a Label here to display the translated text if needed
-        print("Translated Text: " .. translatedText)
+        resultLabel.Text = "Translation: " .. translatedText
     end
 end)
